@@ -1,16 +1,36 @@
-# Intermediate Software Development Activity Project
+# Assignment 7
 
-This project will be developed over the course of several activities. Each
-activity will help to reinforce the knowledge gained in the module.
+Description
+Group Financial Data Processing assignment.
 
-## Author
+# Authors
 
-Zizhang He
+- Developer 1: Sion Kim
+- Developer 2: Zizhang He
+- Developer 3: Edward Rivera
 
-## Activity
+# Milestone 1: Documentation and Tests
 
-Activity 1: Classes and Encapsulation.
-Activity 2: Abstraction, Inheritance and Polymorphism.
-Activity 3: Design Patterns.
-Activity 4: Programming Paradigms.
-Activity 5: Help Files and Installers.
+## Developer 1 Tasks (Issue 1):
+input_handler.py (documentation)
+test_input_handler.py (unit test)
+
+## Developer 2 Tasks (Issue 2):
+
+- Add Documentation DataProcessor class
+- Test DataProcessor class
+
+## Developer 3 Tasks (Issue 3):
+- test_write_transaction_statistics_to_csv
+- test_write_suspicious_transactions_to_csv
+- test_write_account_summaries_to_csv
+
+# Milestone 2: Validation, Logging, and Filtering
+
+## Developer 1 Tasks (Issue 4):
+input_handler.py (data validation)
+test_input_handler.py (unit test)
+
+## Developer 2 Tasks (Issue 5):
+
+## Developer 3 Tasks (Issue 6):
