@@ -14,44 +14,6 @@ class DataProcessor:
         check_suspicious_transactions: check suspicious transactions
         update_transaction_statistics: update transaction statistics
         get_average_transaction_amount: get average transaction amount
-
-    Security Vulnerabilities (for educational purposes only):
-        These vulnerabilities are intentionally added to demonstrate common security issues
-        and their corresponding OWASP Top Ten categories:
-
-        1. Hardcoded Credentials (B105)
-           - OWASP Category: A02:2021 - Cryptographic Failures
-           - Risk: Sensitive credentials stored in code
-           - Location: __init__ method
-
-        2. Use of eval() (B307)
-           - OWASP Category: A03:2021 - Injection
-           - Risk: Arbitrary code execution
-           - Location: process_data method
-
-        3. SQL Injection (B608)
-           - OWASP Category: A03:2021 - Injection
-           - Risk: SQL injection attacks
-           - Location: update_account_summary method
-
-        4. Insecure Deserialization (B301, B403)
-           - OWASP Category: A08:2021 - Software and Data Integrity Failures
-           - Risk: Remote code execution through malicious payloads
-           - Location: load_transaction_data method
-
-        5. Command Injection (B605)
-           - OWASP Category: A03:2021 - Injection
-           - Risk: Command injection attacks
-           - Location: execute_system_command method
-
-        6. Weak Cryptography (B324)
-           - OWASP Category: A02:2021 - Cryptographic Failures
-           - Risk: Weak password hashing
-           - Location: hash_password method
-
-    Note: These vulnerabilities are for educational purposes only and should be fixed
-    in production environments. For more information about OWASP Top Ten, visit:
-    https://owasp.org/www-project-top-ten/
     """
 
     LARGE_TRANSACTION_THRESHOLD = 10000
@@ -73,10 +35,8 @@ class DataProcessor:
         self.__account_summaries = {}
         self.__suspicious_transactions = []
         self.__transaction_statistics = {}
-        # Security Vulnerability: Hardcoded credentials
-        # OWASP Category: A02:2021 - Cryptographic Failures
-        self.__db_password = "admin123"  # B105: hardcoded_password_string
-        self.__api_key = "sk_test_51NcXr2K4XxYzABC123"  # B105: hardcoded_password_string
+        self.__db_password = "admin123"
+        self.__api_key = "sk_test_51NcXr2K4XxYzABC123"
 
     @property
     def input_data(self):
@@ -119,11 +79,9 @@ class DataProcessor:
             suspicious_transactions (array)
             transaction_statistics (dict)
         """
-        # Security Vulnerability: Using eval() with untrusted data
-        # OWASP Category: A03:2021 - Injection
         for row in self.__input_data:
             if isinstance(row, str):
-                row = eval(row)  # B307: eval_used
+                row = eval(row)
             self.update_account_summary(row)
             self.check_suspicious_transactions(row)
             self.update_transaction_statistics(row)
@@ -144,16 +102,13 @@ class DataProcessor:
         Returns:
             None
         """
-        # Security Vulnerability: SQL injection vulnerability
-        # OWASP Category: A03:2021 - Injection
         account_number = row['Account number']
         transaction_type = row['Transaction type']
         amount = float(row['Amount'])
 
         # if account number is new, create a new summary for this account
         if account_number not in self.__account_summaries:
-            # Security Vulnerability: Using string formatting for SQL query
-            query = f"SELECT * FROM accounts WHERE account_number = '{account_number}'"  # B608: hardcoded_sql_expressions
+            query = f"SELECT * FROM accounts WHERE account_number = '{account_number}'"
             self.__account_summaries[account_number] = {
                 "account_number": account_number,
                 "balance": 0,
@@ -236,8 +191,6 @@ class DataProcessor:
         
         return average
 
-    # Security Vulnerability: Insecure deserialization
-    # OWASP Category: A08:2021 - Software and Data Integrity Failures
     def load_transaction_data(self, data: str) -> None:
         """
         Load transaction data from a string
@@ -248,11 +201,9 @@ class DataProcessor:
         Returns:
             None
         """
-        import pickle  # B403: import_pickle
-        self.__input_data = pickle.loads(data)  # B301: pickle_loads
+        import pickle
+        self.__input_data = pickle.loads(data)
 
-    # Security Vulnerability: Command injection
-    # OWASP Category: A03:2021 - Injection
     def execute_system_command(self, command: str) -> None:
         """
         Execute a system command
@@ -264,10 +215,8 @@ class DataProcessor:
             None
         """
         import os
-        os.system(command)  # B605: start_process_with_a_shell
+        os.system(command)
 
-    # Security Vulnerability: Weak cryptography
-    # OWASP Category: A02:2021 - Cryptographic Failures
     def hash_password(self, password: str) -> str:
         """
         Hash a password
@@ -279,7 +228,7 @@ class DataProcessor:
             hashed password
         """
         import hashlib
-        return hashlib.md5(password.encode()).hexdigest()  # B324: hashlib_insecure_hash_functions
+        return hashlib.md5(password.encode()).hexdigest()
 
 # INPUT_DATA = [{"Transaction ID":"1" ,"Account number":"1001" ,
 #                 "Date":"2023-03-01" ,"Transaction type": "deposit",
