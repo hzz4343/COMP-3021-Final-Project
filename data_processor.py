@@ -229,26 +229,3 @@ class DataProcessor:
         """
         import hashlib
         return hashlib.md5(password.encode()).hexdigest()
-
-# INPUT_DATA = [{"Transaction ID":"1" ,"Account number":"1001" ,
-#                 "Date":"2023-03-01" ,"Transaction type": "deposit",
-#                 "Amount":1000,"Currency":"CAD","Description":"Salary"}, 
-#                 {"Transaction ID":"2" ,"Account number":"1002" ,
-#                 "Date":"2023-03-01" ,"Transaction type": "deposit",
-#                 "Amount":1500,"Currency":"CAD","Description":"Salary"},
-#                 {"Transaction ID":"3" ,"Account number":"1002" ,
-#                 "Date":"2023-03-01" ,"Transaction type": "withdrawal",
-#                 "Amount":500,"Currency":"CAD","Description":"Fine"},
-#                 {"Transaction ID":"4" ,"Account number":"1003" ,
-#                 "Date":"2023-03-01" ,"Transaction type": "deposit",
-#                 "Amount":50000,"Currency":"CAD","Description":"Lottery"},
-#                 {"Transaction ID":"5" ,"Account number":"1004" ,
-#                 "Date":"2023-03-01" ,"Transaction type": "deposit",
-#                 "Amount":1000,"Currency":"XRP","Description":"Remote job salary"}]
-
-# data_processor = DataProcessor(INPUT_DATA)
-# data_processor.process_data()
-# result = data_processor.get_average_transaction_amount("deposit")
-
-
-# print(result)
