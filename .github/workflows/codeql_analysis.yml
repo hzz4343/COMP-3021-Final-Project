@@ -10,11 +10,27 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+
+    permissions: # 👈 REQUIRED
+      actions: read
+      contents: read
+      security-events: write
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
-          languages: 'javascript' # or python, java, etc.
+          languages: 'javascript'
+
+      - name: Autobuild # 👈 RECOMMENDED
+        uses: github/codeql-action/autobuild@v3
+
+      # Optional: Replace with manual build if needed
+      # - name: Manual build
+      #   run: npm install && npm run build
+
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
