@@ -16,7 +16,7 @@ class DataProcessor:
         get_average_transaction_amount: get average transaction amount
     """
 
-    LARGE_TRANSACTION_THRESHOLD = 10000
+    LARGE_TRANSACTION_THRESHOLD = 100000
     UNCOMMON_CURRENCIES = ['XRP', 'LTC']
 
     def __init__(self, input_data: list):
